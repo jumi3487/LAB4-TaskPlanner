@@ -1,0 +1,45 @@
+body {
+  width: 100%;
+}
+.main {
+  width: 60%;
+  margin: 5em auto;
+}
+.content {
+  margin: 5em auto;
+}
+.task-input {
+  width: 20em;
+  height: 2em;
+  padding: .5em 1em;
+  border: 1px solid;
+}
+.item-container {
+  margin-left: -3em;
+}
+
+h3 {
+  margin-left: 1em;
+  min-width: 40%;
+}
+
+button {
+  padding: .5em 1em;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.btn-save {
+  height: 3.4em;
+  width: 5em;
+  background-color:green;
+  color: white;
+}
+
+.btn-remove {
+  background-color: white;;
+}
+
+.completed-task {
+  text-decoration: line-through; 
+}
