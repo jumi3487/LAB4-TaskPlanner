@@ -11,6 +11,8 @@ function App() {
     { id: nanoid(), name: 'Buy Grocery', completed: false }
   ]);
 
+  const [filter, setFilter] = useState("All");
+
   // Add a new task
   const handleAddTask = (taskName) => {
     setTasks([...tasks, { id: nanoid(), name: taskName, completed: false }]);
@@ -29,6 +31,11 @@ function App() {
   // Count remaining tasks
   const remainingTasks = tasks.filter(task => !task.completed).length;
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "Completed") return task.completed;
+    if (filter === "Pending") return !task.completed;
+    return true;
+  });
 
   return (
     <>
@@ -36,8 +43,14 @@ function App() {
         <div className="content">
           <h1>Daily Planner</h1>
           <TaskInput onAddTask={handleAddTask} />
-          <h2>You have {remainingTasks} tasks remaining</h2>
-          <TaskList tasks={tasks} onToggleTask={handleToggleTask} onRemoveTask={handleRemoveTask} />
+          
+          <div className="filters">
+            <button onClick={() => setFilter("All")} className={filter === "All" ? "active" : ""}>All</button>
+            <button onClick={() => setFilter("Completed")} className={filter === "Completed" ? "active" : ""}>Completed</button>
+            <button onClick={() => setFilter("Pending")} className={filter === "Pending" ? "active" : ""}>Pending</button>
+          </div>
+          <h2>You have {remainingTasks} task{remainingTasks !== 1 ? 's' : ''}</h2>
+          <TaskList tasks={filteredTasks} onToggleTask={handleToggleTask} onRemoveTask={handleRemoveTask} />
         </div>
     </div>
     </>
